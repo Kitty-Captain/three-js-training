@@ -15,19 +15,33 @@ function App() {
     });
 
     const animate = () => {
-      cube.rotation.x += 0.0001;
-      cube.rotation.y += 0.0001;
+        cube.rotation.x += 0.0001;
+        cube.rotation.y += 0.0001;
+        line.rotation.x += 0.001;
+        line.rotation.y += 0.001;
       renderer.render(scene, camera);
       window.requestAnimationFrame(animate);
     }
 
     renderer.setSize(window.innerWidth, window.innerHeight);
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry,  material);
+    const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+    const cubeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     scene.add(cube);
 
-    camera.position.z = 5;
+    const lineMaterial = new THREE.LineBasicMaterial({ color: 0x0000ff });
+    const points = [
+      new THREE.Vector3(-10, 0, 0),
+      new THREE.Vector3(0, 10, 0),
+      new THREE.Vector3(10, 0, 0),
+    ]
+    const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+    const line = new THREE.Line(lineGeometry, lineMaterial);
+
+    scene.add(line);
+
+    camera.position.set(0, 0, 30);
+    camera.lookAt(0, 0, 0)
     document.body.appendChild(renderer.domElement);
     renderer.setAnimationLoop(animate);
   }, []);
