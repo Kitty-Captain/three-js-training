@@ -14,7 +14,7 @@ export const Rect = (props: OwnProps) => {
     return (
         <RigidBody type="fixed">
             <Box position={position} args={args}>
-                <meshBasicMaterial alphaTest={alphaTest} color={color} />
+                <meshStandardMaterial alphaTest={alphaTest} color={color} />
             </Box>
         </RigidBody>
     )

@@ -54,7 +54,7 @@ function App() {
       <div id="canvas-container">
         <button id="addBallBtn" onClick={addBall}>Add a ball</button>
 
-        <Canvas shadows camera={{ position: [10, 10, 25], fov: 30 }}>
+        <Canvas shadows>
           <Experience />
 
           <Suspense>
